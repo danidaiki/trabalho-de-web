@@ -8,5 +8,5 @@
 **nomes e tarefas recebidas**
 
 ### O Resto não tive ideia pra colocar pra fazer o README.md 
-# ( ͠≖ ͜ ʖ͠≖)👌
+# ( ͠≖ ͜ ʖ͠≖)👌 TERMINE
 # 凸 ( ͠≖ ͜ ʖ ͡≖)凸
