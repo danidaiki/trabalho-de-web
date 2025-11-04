@@ -7,3 +7,10 @@ Este é um projeto de **Vendas de Carro** que permite o usuario poder vender ou 
 * Daniel Daiki Ogura
 * Gustavo Eminyn Bueno dos Santos
 * Miguel Aparecido Costa
+
+# Andamento do projeto:
+
+Backend:
+
+Frontend:
+
