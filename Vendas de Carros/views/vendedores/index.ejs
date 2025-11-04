@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="container">
+  <h2>Vendedores</h2>
+  <a href="/vendedores/new" class="btn btn-success mb-3">+ Novo Vendedor</a>
+  <table class="table table-bordered">
+    <thead><tr><th>ID</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Ações</th></tr></thead>
+    <tbody>
+      <% vendedores.forEach(v => { %>
+        <tr>
+          <td><%= v.id_vendedor %></td>
+          <td><%= v.nome %></td>
+          <td><%= v.email %></td>
+          <td><%= v.telefone %></td>
+          <td>
+            <a class="btn btn-sm btn-warning" href="/vendedores/<%= v.id_vendedor %>/edit">Editar</a>
+            <form action="/vendedores/<%= v.id_vendedor %>/delete" method="post" style="display:inline;">
+              <button class="btn btn-sm btn-danger">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

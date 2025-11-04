@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<div class="container">
+  <h2>Editar Comprador</h2>
+  <form action="/compradores/<%= comprador.id_comprador %>" method="post">
+    <div class="mb-3"><label class="form-label">Nome</label><input class="form-control" name="nome" value="<%= comprador.nome %>" required></div>
+    <div class="mb-3"><label class="form-label">Email</label><input class="form-control" name="email" type="email" value="<%= comprador.email %>" required></div>
+    <div class="mb-3"><label class="form-label">Telefone</label><input class="form-control" name="telefone" value="<%= comprador.telefone %>"></div>
+    <div class="mb-3"><label class="form-label">Rede social</label><input class="form-control" name="rede_social" value="<%= comprador.rede_social %>"></div>
+    <button class="btn btn-primary" type="submit">Atualizar</button>
+  </form>
+</div>
+<%- include('../partials/footer') %>

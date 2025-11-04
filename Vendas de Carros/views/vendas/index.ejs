@@ -1,0 +1,66 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<div class="container">
+  <h2>Vendas</h2>
+
+  <form action="/vendas" method="post" class="mb-4">
+    <div class="row g-2">
+      <div class="col-md-3">
+        <label class="form-label">Vendedor</label>
+        <select name="id_vendedor" class="form-select">
+          <option value="">--</option>
+          <% vendedores.forEach(v => { %>
+            <option value="<%= v.id_vendedor %>"><%= v.nome %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Comprador</label>
+        <select name="id_comprador" class="form-select">
+          <option value="">--</option>
+          <% compradores.forEach(c => { %>
+            <option value="<%= c.id_comprador %>"><%= c.nome %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Veículo</label>
+        <select name="id_veiculo" class="form-select">
+          <option value="">--</option>
+          <% veiculos.forEach(v => { %>
+            <option value="<%= v.id_veiculo %>"><%= v.marca %> <%= v.modelo %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Valor</label>
+        <input type="number" step="0.01" name="valor_venda" class="form-control">
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button class="btn btn-primary w-100">Registrar</button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-bordered">
+    <thead><tr><th>ID</th><th>Data</th><th>Vendedor</th><th>Comprador</th><th>Veículo</th><th>Valor</th><th>Ações</th></tr></thead>
+    <tbody>
+      <% vendas.forEach(s => { %>
+        <tr>
+          <td><%= s.id_venda %></td>
+          <td><%= s.data_venda %></td>
+          <td><%= s.vendedor_nome || '-' %></td>
+          <td><%= s.comprador_nome || '-' %></td>
+          <td><%= s.marca ? s.marca + ' ' + s.modelo : '-' %></td>
+          <td><%= s.valor_venda %></td>
+          <td>
+            <form action="/vendas/<%= s.id_venda %>/delete" method="post" style="display:inline;">
+              <button class="btn btn-sm btn-danger">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>
