@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="container">
+  <h2>Registrar</h2>
+  <% if (flash && flash.error) { %>
+    <div class="alert alert-danger"><%= flash.error %></div>
+  <% } %>
+  <form action="/register" method="post">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input class="form-control" type="text" name="nome" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" type="email" name="email" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input class="form-control" type="password" name="senha" required>
+    </div>
+    <button class="btn btn-success" type="submit">Criar conta</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
