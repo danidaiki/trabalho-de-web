@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Veículos à Venda</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>Veículos Disponíveis</h1>
+
+<div class="grid" id="lista"></div>
+
+<script>
+async function loadVeiculos() {
+  try {
+    const res = await fetch('http://localhost:3000/veiculos');
+    if (!res.ok) return console.error('Erro ao carregar veículos');
+    const dados = await res.json();
+
+    let html = '';
+    dados.forEach(v => {
+      const img = v.imagem ? `http://localhost:3000/uploads/${v.imagem}` : '';
+      html += `
+      <div class="card">
+        ${img ? `<img src="${img}">` : ''}
+        <h3>${v.marca} ${v.modelo}</h3>
+        <p>Ano: ${v.ano}</p>
+        <p class="preco">R$ ${v.preco}</p>
+      </div>
+      `;
+    });
+
+    document.getElementById('lista').innerHTML = html;
+  } catch (err) {
+    console.error('Erro de conexão ao buscar veículos', err);
+  }
+}
+
+// Carrega inicialmente e faz polling a cada 5 segundos para atualizar a lista
+loadVeiculos();
+setInterval(loadVeiculos, 5000);
+</script>
+
+</body>
+</html>
