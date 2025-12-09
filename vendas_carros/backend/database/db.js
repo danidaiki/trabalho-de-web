@@ -1,15 +1,3 @@
-const mysql = require('mysql2');
+import { connection } from '../db.js';
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'venda_carros'
-});
-
-connection.connect(err => {
-  if (err) console.log('Erro no banco:', err);
-  else console.log('Banco conectado!');
-});
-
-module.exports = connection;
+export default connection;

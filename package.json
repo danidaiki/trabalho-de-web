@@ -1,0 +1,29 @@
+{
+  "name": "trabalho-de-web",
+  "version": "1.0.0",
+  "description": "Este é um projeto de **Vendas de Carro** que permite o usuario poder vender ou **comprar um carro**",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danidaiki/trabalho-de-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danidaiki/trabalho-de-web/issues"
+  },
+  "homepage": "https://github.com/danidaiki/trabalho-de-web#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.3"
+  }
+}
