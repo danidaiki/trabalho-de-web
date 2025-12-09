@@ -10,7 +10,9 @@ Este é um projeto de **Vendas de Carro** que permite o usuario poder vender ou 
 
 # Andamento do projeto:
 
-Backend:
-
-Frontend:
-
+Backend:Daniel e MIguel
+incompleto
+Frontend:Miguel
+incompleto
+Banco de dados:Gustavo
+incompleto
