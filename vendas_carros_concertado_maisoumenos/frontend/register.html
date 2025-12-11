@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Usuário</title>
+</head>
+<body>
+<h1>Cadastro</h1>
+<form id="registerForm">
+  <input name="nome" placeholder="Nome" required><br>
+  <input name="email" type="email" placeholder="Email" required><br>
+  <input name="senha" type="password" placeholder="Senha" required><br>
+  <button type="submit">Cadastrar</button>
+</form>
+<p id="msg" style="margin-top:8px;color:green"></p>
+<p>Já tem conta? <a href="login.html">Login</a></p>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    nome: form.nome.value,
+    email: form.email.value,
+    senha: form.senha.value
+  };
+
+  try {
+    const res = await fetch('http://localhost:3000/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (res.ok) {
+      document.getElementById('msg').textContent = 'Cadastro realizado! Redirecionando...';
+      setTimeout(() => window.location.href='login.html', 1000);
+    } else {
+      document.getElementById('msg').style.color = 'red';
+      document.getElementById('msg').textContent = json.error || 'Erro ao cadastrar';
+    }
+  } catch {
+    document.getElementById('msg').style.color = 'red';
+    document.getElementById('msg').textContent = 'Erro de conexão';
+  }
+});
+</script>
+</body>
+</html>

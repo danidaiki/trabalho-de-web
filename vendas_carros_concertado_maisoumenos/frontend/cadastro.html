@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Veículo</title>
+</head>
+<body>
+<h1>Cadastrar Veículo</h1>
+<form id="cadastroForm" enctype="multipart/form-data">
+  <input name="marca" placeholder="Marca" required><br>
+  <input name="modelo" placeholder="Modelo" required><br>
+  <input name="ano" type="number" placeholder="Ano"><br>
+  <input name="categoria" placeholder="Categoria"><br>
+  <input name="preco" type="number" step="0.01" placeholder="Preço" required><br>
+  <input name="id_vendedor" type="number" placeholder="ID do Vendedor"><br>
+  <input type="file" name="imagem"><br>
+  <button type="submit">Cadastrar</button>
+</form>
+<div id="mensagem" style="margin-top:8px;color:green"></div>
+<a href="listar.html">Voltar para lista</a>
+
+<script>
+document.getElementById('cadastroForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('http://localhost:3000/api/veiculos', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+    if (!res.ok) {
+      document.getElementById('mensagem').style.color='red';
+      document.getElementById('mensagem').textContent = json.error || 'Erro ao cadastrar';
+      return;
+    }
+    document.getElementById('mensagem').style.color='green';
+    document.getElementById('mensagem').textContent = 'Veículo cadastrado com sucesso!';
+    form.reset();
+    setTimeout(()=> window.location.href='listar.html', 1000);
+  } catch {
+    document.getElementById('mensagem').style.color='red';
+    document.getElementById('mensagem').textContent = 'Erro de conexão';
+  }
+});
+</script>
+</body>
+</html>

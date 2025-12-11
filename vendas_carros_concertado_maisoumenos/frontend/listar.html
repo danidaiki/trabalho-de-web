@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Veículos</title>
+<style>
+  .grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+  .card { border:1px solid #ddd; padding:8px; border-radius:6px; }
+  .card img{max-width:100%; height:140px; object-fit:cover;}
+  .preco{font-weight:bold;}
+</style>
+</head>
+<body>
+<h1>Veículos Disponíveis</h1>
+<a href="cadastro.html">Cadastrar</a>
+<div class="grid" id="lista"></div>
+
+<script>
+async function loadVeiculos() {
+  try {
+    const res = await fetch('http://localhost:3000/api/veiculos');
+    const dados = await res.json();
+    let html = '';
+    dados.forEach(v => {
+      const img = v.imagem ? 'http://localhost:3000/uploads/' + v.imagem : '';
+      html += `<div class="card">
+        ${img?`<img src="${img}">`:''}
+        <h3>${v.marca} ${v.modelo}</h3>
+        <p>Ano: ${v.ano || ''}</p>
+        <p>Vendedor: ${v.vendedor_nome || ''}</p>
+        <p class="preco">R$ ${v.preco}</p>
+      </div>`;
+    });
+    document.getElementById('lista').innerHTML = html;
+  } catch {
+    document.getElementById('lista').innerHTML = '<p>Erro ao carregar veículos.</p>';
+  }
+}
+loadVeiculos();
+setInterval(loadVeiculos, 5000);
+</script>
+</body>
+</html>
